@@ -14,6 +14,11 @@
   <div class="container">
   <h1 class="text-center"> TITLE </h1>
     Templates can include common elements like headers, footers, and navigation bars, which can be reused across different pages. This reduces code duplication and makes your application easier to update.
+    <div>
+    {% for job in jobs %}
+   <h3>NAME: {{job['name']}}</h3>
+    {% endfor %}
+  </div>
   </div>
 </body>
 </html>
