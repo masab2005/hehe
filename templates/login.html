@@ -9,7 +9,7 @@
   .btn{
     color:white;
     background-color:red;
-    border-color:white !important;
+    border-color:black !important;
   }
     .btn:hover{
       background-color:white;
@@ -20,13 +20,14 @@
   </style>
 </head>
   <div class="centered">
+    <div style="color:white;">
   <body class="text-center">
     <form class="form-signin">
     
 
-      <label for="inputEmail" class="sr-only mb-3"><b>Username</b></label>
-      <input type="email" id="inputEmail" class="form-control mb-3" placeholder="Email address" required autofocus>
-      <label for="inputPassword" class="sr-only mb-3"><b>Password</b></label>
+      <label for="inputEmail" class="sr-only mb-2"><b>Username</b></label>
+      <input type="email" id="inputEmail" class="form-control mb-4" placeholder="Email address" required autofocus>
+      <label for="inputPassword" class="sr-only mb-1"><b>Password</b></label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
       <div class="checkbox mb-3">
         <label>
@@ -34,6 +35,9 @@
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <h6 class="mt-4"> Create an account :  <a href="/signup" style="color:white;"><b>Sign up</b></a> </h6> 
+     
     </form>
   </body>
+    </div>
     </div>
