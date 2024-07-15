@@ -1,5 +1,9 @@
 from flask import Flask , render_template, request, redirect, url_for, session
-from database import connection,load_info
+from database import load_info, insert_info, check_user
+import importlib
+import database
+importlib.reload(database)
+
 app = Flask(__name__)
 app.secret_key='pooop'
 
@@ -20,12 +24,31 @@ def home():
         else:
             mesage = 'Please enter correct email / password !'
     return render_template('home.html',mesage = mesage,info=info)
+     
 
-       
-
-@app.route('/signup')
+@app.route('/signup', methods=['GET','POST'])
 def signup():
-    return render_template('create_account.html')
+    mesage = ''
+    info = []
+    if request.method == 'POST':
+        email    = request.form['email']
+        username = request.form['username']
+        password = request.form['password']
+        confirm_pwd = request.form['confirm_pwd']
+        info = check_user(email,username)
+        if info: 
+            mesage = 'Email or Username already exists!'
+        else:
+             if password == confirm_pwd:
+                 insert_info(email,username,password)
+                 session['loggedin'] = True
+                 session['username'] = username
+                 mesage = 'Account Created!'
+                 return render_template('loggedin.html',mesage = mesage)
+             else:
+                 mesage = 'Password not matched !'
+    
+    return render_template('create_account.html',mesage = mesage)
 
 @app.route('/loggedin')
 def loggedin():

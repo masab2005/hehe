@@ -14,9 +14,20 @@ connection = pymysql.connect(
   user="avnadmin",
   write_timeout=timeout,
 )
+
 def load_info(username,password):
    result = connection.cursor()
    result.execute('SELECT * FROM info WHERE username = %s AND password = %s', (username, password, ))
    info = result.fetchone()
    return info
+  
+def insert_info(email,username,password):
+   result = connection.cursor()
+   result.execute('INSERT INTO info (email,username,password) VALUES (%s,%s,%s)', (email,username,password, ))
+   connection.commit()
 
+def check_user(email,username):
+   result = connection.cursor()
+   result.execute('SELECT * FROM info WHERE email = %s OR username = %s', (email,username ))
+   info = result.fetchone()
+   return info
